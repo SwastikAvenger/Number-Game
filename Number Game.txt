@@ -1,0 +1,149 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class GuessingGame {
+    public static void guessPracticeMode(int upper) {
+        int lower = 1;
+        Random rand = new Random();
+        int num = rand.nextInt(upper - lower + 1) + lower;
+        System.out.println("The Random Number is " + num);
+
+        int guess;
+        int tries = 0;
+        System.out.println("*********************************************");
+        System.out.println("*********************************************");
+        System.out.println("There is a Hidden Number present in the game ...");
+        System.out.println("Do you have what it takes to guess the hidden number ?");
+
+        while (true) {
+            System.out.println("Guess the Number !");
+            Scanner scanner = new Scanner(System.in);
+            guess = scanner.nextInt();
+            tries++;
+
+            if (guess == num) {
+                System.out.println("Congratulations !!");
+                System.out.println("**You've found the secret number !**");
+                System.out.println("You took " + tries + " tries to guess the number");
+
+                if (tries <= 5)
+                    System.out.println("You're a detective !\n*********************************************");
+                else if (tries > 5 && tries <= 15) {
+                    System.out.println("You can surely work it down !");
+                    System.out.println("Keep playing and Keep practicing !");
+                    System.out.println("*********************************************");
+                } else {
+                    System.out.println("You took too many tries !");
+                    System.out.println("Keep playing and Keep practicing !");
+                    System.out.println("*********************************************");
+                }
+                break;
+            } else if (guess < num) {
+                System.out.println("!! INCORRECT CHOICE !!");
+                System.out.println("You guessed lower.");
+                System.out.println("TRY AGAIN !");
+            } else {
+                System.out.println("!! INCORRECT CHOICE !!");
+                System.out.println("You guessed higher.");
+                System.out.println("TRY AGAIN !");
+            }
+        }
+    }
+
+    public static void guessDetectiveMode(int upper) {
+        int lower = 1;
+        Random rand = new Random();
+        int num = rand.nextInt(upper - lower + 1) + lower;
+        System.out.println("The Random Number is " + num);
+        
+        Scanner scanner = new Scanner(System.in);
+        int guess;
+        int tries = 0;
+        System.out.println("*********************************************");
+        System.out.println("*********************************************");
+        System.out.println("There is a Hidden Number present in the game ...");
+        System.out.println("Do you have what it takes to guess the hidden number ?");
+
+        int i = 6;
+        while (i > 0) {
+            System.out.println("Guess the Number !");
+            guess = scanner.nextInt();
+            tries++;
+            if (guess == num) {
+                System.out.println("Congratulations !!");
+                System.out.println("**You've found the secret number !**");
+                System.out.println("You took " + tries + " tries to guess the number");
+                System.out.println("You're a detective !");
+                System.out.println("*********************************************");
+                break;
+            } else if (guess < num) {
+                System.out.println("!! INCORRECT CHOICE !!");
+                System.out.println("You guessed lower.");
+                System.out.println("You have " + --i + " attempts");
+            } else {
+                System.out.println("!! INCORRECT CHOICE !!");
+                System.out.println("You guessed higher.");
+                System.out.println("You have " + --i + " attempts");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int upper, mode;
+        int retry;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("*****************************");
+            System.out.println(" DETECTIVE MODE  - Press 1");
+            System.out.println(" PRACTICE MODE   - Press 2");
+            System.out.println(" Exit Game       - Press 3");
+            System.out.println("*****************************");
+            mode = scanner.nextInt();
+
+            switch (mode) {
+                case 1:
+                    System.out.println(" **************************** ");
+                    System.out.println("Welcome to Detective Mode");
+                    System.out.println("Remember to tread Cautiously");
+                    System.out.println("Your tries are limited !");
+                    System.out.println("Enter the maximum number of guessing :: ");
+                    upper = scanner.nextInt();
+                    Random rand = new Random();
+                    rand.setSeed(System.currentTimeMillis());
+                    guessDetectiveMode(upper);
+                    System.out.println("\n\n\n\n\n");
+                    System.out.println("Do You Want To Try Again ?");
+                    System.out.println("Press 1 for YES      Press 2 for NO");
+                    retry = scanner.nextInt();
+                    if (retry != 1)
+                        System.exit(0);
+                    break;
+
+                case 2:
+                    System.out.println(" ********************************");
+                    System.out.println("Welcome to Practice Mode");
+                    System.out.println("You can practice as much as you want here");
+                    System.out.println("You have unlimited tries");
+                    System.out.println("Practice to be the next Sherlock Holmes !");
+                    System.out.println("Enter the maximum number of guessing :: ");
+                    upper = scanner.nextInt();
+                    Random rand2 = new Random();
+                    rand2.setSeed(System.currentTimeMillis());
+                    guessPracticeMode(upper);
+                    System.out.println("\n\n\n\n\n");
+                    System.out.println("Do You Want To Try Again ?");
+                    System.out.println("Press 1 for YES      Press 2 for NO");
+                    retry = scanner.nextInt();
+                    if (retry != 1)
+                        System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("That is a WRONG CHOICE !");
+                    System.out.println("Type the correct choice !");
+            }
+        }
+    }
+}
