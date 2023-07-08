@@ -6,7 +6,6 @@ public class GuessingGame {
         int lower = 1;
         Random rand = new Random();
         int num = rand.nextInt(upper - lower + 1) + lower;
-        System.out.println("The Random Number is " + num);
 
         int guess;
         int tries = 0;
@@ -54,7 +53,6 @@ public class GuessingGame {
         int lower = 1;
         Random rand = new Random();
         int num = rand.nextInt(upper - lower + 1) + lower;
-        System.out.println("The Random Number is " + num);
         
         Scanner scanner = new Scanner(System.in);
         int guess;
